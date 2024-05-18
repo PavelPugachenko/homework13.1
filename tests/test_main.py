@@ -10,7 +10,7 @@ def category_with_products():
     return category
 
 def test_category_total(category_with_products):
-    assert category_with_products.gettotalcategory() == 40
+    assert category_with_products.get_total_category() == 40
 
 def test_category_product_count(category_with_products):
     assert len(category_with_products.products) == 2
@@ -19,8 +19,9 @@ def test_product_total():
     product = Product("Product1", "Description1", 10, 5)
     assert product.get_total() == 50
 
+
 def test_updatequantity():
-    obj = YourClass()
+    obj = Product('Product1', 'Description1', 10, 5)
     obj.quantity = 5
-    assert obj.updatequantity(10) == 10  # Предполагаем, что метод gettotal возвращает значение quantity
+    assert obj.updat_equantity(10) == 10
 

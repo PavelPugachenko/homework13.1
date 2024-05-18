@@ -4,7 +4,7 @@ class Category:
         self.descriptions = descriptions
         self.products = products
 
-    def gettotalcategory(self):
+    def get_total_category(self):
         total = 0
         for product in self.products:
             total += product.pay * product.quantity
@@ -21,8 +21,8 @@ class Product:
     def get_total(self):
         return self.pay * self.quantity
 
-    def updatequantity(self, newquantity):
-        self.quantity = newquantity
-        return self.gettotal()
+    def update_quantity(self, new_quantity):
+        self.quantity = new_quantity
+        return self.quantity
 
 
