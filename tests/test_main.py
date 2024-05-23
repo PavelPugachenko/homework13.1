@@ -22,6 +22,8 @@ def test_product_total():
 
 def test_update_quantity():
     obj = Product('Product1', 'Description1', 10, 5)
-    obj.quantity = 5
-    assert obj.update_quantity(10) == 10
+    obj.update_quantity(10)
+    assert obj.quantity == 10
+
+
 
