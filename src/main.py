@@ -43,7 +43,7 @@ class Product:
         self.quantity = update_quantity
         return self.quantity
 
-    @staticmethod
-    def create_product(title, descriptions, pay, quantity):
-        return Product(title, descriptions, pay, quantity)
-        return self.quantity
+    @classmethod
+    def create_product(cls, title, descriptions, pay, quantity):
+        return cls(title, descriptions, pay, quantity)
+        return cls.quantity
