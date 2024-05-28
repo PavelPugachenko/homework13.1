@@ -3,7 +3,8 @@ class Category:
         self.title = title
         self.descriptions = descriptions
         self.__products = products
-
+    def __len__(self):
+        return len(self.products)
     @property
     def products(self):
         return [(f"{product.title}, {product.pay} руб. Остаток: {product.quantity} шт.") for product in self.__products]
@@ -17,6 +18,8 @@ class Category:
 
     def add_product(self, product):
         self.__products.append(product)
+    def __str__(self):
+        return f'Название категории, количество продуктов: {len(self)} шт.'
 
 class Product:
     def __init__(self, title, descriptions, pay, quantity):
@@ -36,6 +39,11 @@ class Product:
         else:
             self.__pay = new_pay
 
+    def __add__(self, other):
+        total_price_self = self.pay * self.quantity
+        total_price_other = other.pay * other.quantity
+        return total_price_self + total_price_other
+
     def get_total(self):
         return self.pay * self.quantity
 
@@ -46,4 +54,7 @@ class Product:
     @classmethod
     def create_product(cls, title, descriptions, pay, quantity):
         return cls(title, descriptions, pay, quantity)
-        return cls.quantity
+
+    def __str__(self):
+        return f'{self.title}, {self.pay} руб. Остаток: {self.quantity} шт.'
+
