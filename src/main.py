@@ -17,7 +17,10 @@ class Category:
         return total
 
     def add_product(self, product):
-        self.__products.append(product)
+        if isinstance(product, Product):
+            self.__products.append(product)
+        else:
+            print("Нельзя добавить объект другого класса")
     def __str__(self):
         return f'Название категории, количество продуктов: {len(self)} шт.'
 
@@ -40,6 +43,8 @@ class Product:
             self.__pay = new_pay
 
     def __add__(self, other):
+        if type(self) != type(other):
+            raise TypeError("Нельзя складывать товары разных классов")
         total_price_self = self.pay * self.quantity
         total_price_other = other.pay * other.quantity
         return total_price_self + total_price_other
@@ -58,3 +63,17 @@ class Product:
     def __str__(self):
         return f'{self.title}, {self.pay} руб. Остаток: {self.quantity} шт.'
 
+class Smartphone(Product):
+    def __init__(self, title, descriptions, pay, quantity, performance, model, memory, color):
+        super().__init__(title, descriptions, pay, quantity)
+        self.performance = performance
+        self.model = model
+        self.memory = memory
+        self.color = color
+
+class Grass(Product):
+    def __init__(self, title, descriptions, pay, quantity, country_of_origin, germination_period, color):
+        super().__init__(title, descriptions, pay, quantity)
+        self.country_of_origin = country_of_origin
+        self.germination_period = germination_period
+        self.color = color
