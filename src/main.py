@@ -39,12 +39,12 @@ class Category(MixinRepr):
 
         @property
         @abstractmethod
-        def price(self):
+        def pay(self):
             pass
 
-        @price.setter
+        @pay.setter
         @abstractmethod
-        def price(self, new_price):
+        def pay(self, new_pay):
             pass
 
 class Product(MixinRepr):
