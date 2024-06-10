@@ -1,4 +1,10 @@
-class Category:
+from abc import ABC, abstractmethod
+
+class MixinRepr:
+    def __repr__(self):
+        return f'{self.__class__.__name__} ({self.__dict__.items()})'
+
+class Category(MixinRepr):
     def __init__(self, title, descriptions, products):
         self.title = title
         self.descriptions = descriptions
@@ -24,7 +30,24 @@ class Category:
     def __str__(self):
         return f'Название категории, количество продуктов: {len(self)} шт.'
 
-class Product:
+    class Abstract(ABC):
+
+        @classmethod
+        @abstractmethod
+        def creat_product(cls):
+            pass
+
+        @property
+        @abstractmethod
+        def price(self):
+            pass
+
+        @price.setter
+        @abstractmethod
+        def price(self, new_price):
+            pass
+
+class Product(MixinRepr):
     def __init__(self, title, descriptions, pay, quantity):
         self.title = title
         self.descriptions = descriptions
