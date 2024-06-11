@@ -1,10 +1,15 @@
 from abc import ABC, abstractmethod
 
-class MixinRepr:
+class PrintMixin:
+    def __init__(self, *args):
+        print(repr(self))
     def __repr__(self):
-        return f'{self.__class__.__name__} ({self.__dict__.items()})'
+        object_attributes = ''
+        for k, v in self.__dict__.items():
+            object_attributes += f'{k}: {v},'
+        return f"создан объект со свойствами {object_attributes})"
 
-class Category(MixinRepr):
+class Category(PrintMixin):
     def __init__(self, title, descriptions, products):
         self.title = title
         self.descriptions = descriptions
@@ -47,7 +52,7 @@ class Category(MixinRepr):
         def pay(self, new_pay):
             pass
 
-class Product(MixinRepr, ABC):
+class Product(PrintMixin, ABC):
     def __init__(self, title, descriptions, pay, quantity):
         self.title = title
         self.descriptions = descriptions
