@@ -47,7 +47,7 @@ class Category(MixinRepr):
         def pay(self, new_pay):
             pass
 
-class Product(MixinRepr):
+class Product(MixinRepr, ABC):
     def __init__(self, title, descriptions, pay, quantity):
         self.title = title
         self.descriptions = descriptions
