@@ -35,11 +35,33 @@ class Category(PrintMixin):
     def __str__(self):
         return f'Название категории, количество продуктов: {len(self)} шт.'
 
+    def add_product(self, product):
+        if isinstance(product, Product):
+            if product.quantity == 0:
+                raise ValueError("Товар с нулевым количеством не может быть добавлен")
+            self.__products.append(product)
+        else:
+            print("Нельзя добавить объект другого класса")
+
+    def calculate_average_price(self):
+        total_price = 0
+        total_quantity = 0
+
+        for product in self.__products:
+            total_price += product.pay * product.quantity
+            total_quantity += product.quantity
+
+        try:
+            average_price = total_price / total_quantity
+            return average_price
+        except ZeroDivisionError:
+            return 0
+
     class Abstract(ABC):
 
         @classmethod
         @abstractmethod
-        def creat_product(cls):
+        def create_product(cls):
             pass
 
         @property
